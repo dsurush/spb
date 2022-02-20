@@ -37,17 +37,17 @@ func TestCheckInCircileDriven(t *testing.T) {
 	defaultY := 1
 
 	var tests = []struct {
-		data CoordinateData
+		data CircleCoordinateData
 		want string
 	}{
-		{CoordinateData{X: 1, Y: 1, Diametr: 4}, "USD"},
-		{CoordinateData{X: 1, Y: 1, Diametr: 1}, "USD"},
-		{CoordinateData{X: 2, Y: -1, Diametr: 4}, "EUR"},
-		{CoordinateData{X: 2, Y: -1, Diametr: 9}, "USD"},
-		{CoordinateData{X: -2, Y: 2, Diametr: 4}, "EUR"},
-		{CoordinateData{X: -2, Y: 2, Diametr: 10}, "USD"},
-		{CoordinateData{X: -2, Y: -3, Diametr: 6}, "EUR"},
-		{CoordinateData{X: -2, Y: -3, Diametr: 10}, "USD"},
+		{CircleCoordinateData{X: 1, Y: 1, Diametr: 4}, "USD"},
+		{CircleCoordinateData{X: 1, Y: 1, Diametr: 1}, "USD"},
+		{CircleCoordinateData{X: 2, Y: -1, Diametr: 4}, "EUR"},
+		{CircleCoordinateData{X: 2, Y: -1, Diametr: 9}, "USD"},
+		{CircleCoordinateData{X: -2, Y: 2, Diametr: 4}, "EUR"},
+		{CircleCoordinateData{X: -2, Y: 2, Diametr: 10}, "USD"},
+		{CircleCoordinateData{X: -2, Y: -3, Diametr: 6}, "EUR"},
+		{CircleCoordinateData{X: -2, Y: -3, Diametr: 10}, "USD"},
 	}
 
 	for _, tt := range tests {

@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 )
 
 type AllCurrency struct {
@@ -27,7 +28,9 @@ type Currency struct {
 }
 
 func GetAllCurrency() (AllCurrency, error) {
-	client := &http.Client{}
+	client := &http.Client{
+		Timeout: time.Second * 3,
+	}
 	data := AllCurrency{}
 	url := `https://www.cbr-xml-daily.ru/daily_json.js`
 	method := `GET`
