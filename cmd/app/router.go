@@ -15,12 +15,12 @@ func RouterInit() {
 
 	setting, err := utils.ReadSettings(`../settings/settings.json`)
 	if err != nil {
-		log.Fatalf("Check path envirement readsettings")
+		log.Fatalf("Check path envirement readsettings err is %e", err)
 	}
 
 	coordinate, err = services.ReadCoordinate(filepath)
 	if err != nil {
-		log.Fatalf("Check path bussines readsettings")
+		log.Fatalf("Check path bussines readsettings err is %e", err)
 	}
 
 	router.GET("/inradius", InradiusHandler)
