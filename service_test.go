@@ -2,7 +2,7 @@ package test
 
 import (
 	"fmt"
-	"spb/pkg"
+	"spb/pkg/services"
 	"testing"
 )
 
@@ -11,13 +11,13 @@ func TestCountDistanceDriven(t *testing.T) {
 	defaultY := 1
 
 	var tests = []struct {
-		data pkg.CoordinateData
+		data services.CoordinateData
 		want float64
 	}{
-		{pkg.CoordinateData{X: 1, Y: 1, Diametr: 4}, 0},
-		{pkg.CoordinateData{X: 2, Y: -1, Diametr: 4}, 5},
-		{pkg.CoordinateData{X: -2, Y: 2, Diametr: 4}, 10},
-		{pkg.CoordinateData{X: -2, Y: -3, Diametr: 4}, 25},
+		{services.CoordinateData{X: 1, Y: 1, Diametr: 4}, 0},
+		{services.CoordinateData{X: 2, Y: -1, Diametr: 4}, 5},
+		{services.CoordinateData{X: -2, Y: 2, Diametr: 4}, 10},
+		{services.CoordinateData{X: -2, Y: -3, Diametr: 4}, 25},
 	}
 
 	for _, tt := range tests {
@@ -36,17 +36,17 @@ func TestCheckInCircileDriven(t *testing.T) {
 	defaultY := 1
 
 	var tests = []struct {
-		data pkg.CoordinateData
+		data services.CoordinateData
 		want string
 	}{
-		{pkg.CoordinateData{X: 1, Y: 1, Diametr: 4}, "USD"},
-		{pkg.CoordinateData{X: 1, Y: 1, Diametr: 1}, "USD"},
-		{pkg.CoordinateData{X: 2, Y: -1, Diametr: 4}, "EUR"},
-		{pkg.CoordinateData{X: 2, Y: -1, Diametr: 9}, "USD"},
-		{pkg.CoordinateData{X: -2, Y: 2, Diametr: 4}, "EUR"},
-		{pkg.CoordinateData{X: -2, Y: 2, Diametr: 10}, "USD"},
-		{pkg.CoordinateData{X: -2, Y: -3, Diametr: 6}, "EUR"},
-		{pkg.CoordinateData{X: -2, Y: -3, Diametr: 10}, "USD"},
+		{services.CoordinateData{X: 1, Y: 1, Diametr: 4}, "USD"},
+		{services.CoordinateData{X: 1, Y: 1, Diametr: 1}, "USD"},
+		{services.CoordinateData{X: 2, Y: -1, Diametr: 4}, "EUR"},
+		{services.CoordinateData{X: 2, Y: -1, Diametr: 9}, "USD"},
+		{services.CoordinateData{X: -2, Y: 2, Diametr: 4}, "EUR"},
+		{services.CoordinateData{X: -2, Y: 2, Diametr: 10}, "USD"},
+		{services.CoordinateData{X: -2, Y: -3, Diametr: 6}, "EUR"},
+		{services.CoordinateData{X: -2, Y: -3, Diametr: 10}, "USD"},
 	}
 
 	for _, tt := range tests {

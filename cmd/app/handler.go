@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"spb/pkg"
+	"spb/pkg/services"
 	"strconv"
 
 	"github.com/julienschmidt/httprouter"
@@ -36,7 +36,7 @@ func Test(writer http.ResponseWriter, request *http.Request, _ httprouter.Params
 		}
 		return
 	}
-	Coordinate, err := pkg.ReadCoordinate(filepath)
+	Coordinate, err := services.ReadCoordinate(filepath)
 	if err != nil {
 		log.Printf("Handler Test ReadData filepath err is %e\n", err)
 		writer.WriteHeader(http.StatusInternalServerError)
@@ -47,7 +47,7 @@ func Test(writer http.ResponseWriter, request *http.Request, _ httprouter.Params
 		return
 	}
 	currency := Coordinate.CheckInCircile(x, y)
-	AllCurrency, err := pkg.GetAllCurrency()
+	AllCurrency, err := services.GetAllCurrency()
 	if err != nil {
 		writer.WriteHeader(http.StatusFailedDependency)
 		err := json.NewEncoder(writer).Encode([]string{"err.dependency_error"})
