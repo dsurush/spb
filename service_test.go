@@ -6,6 +6,7 @@ import (
 	"testing"
 )
 
+/*
 func TestCountDistanceDriven(t *testing.T) {
 	defaultX := 1
 	defaultY := 1
@@ -30,8 +31,9 @@ func TestCountDistanceDriven(t *testing.T) {
 		})
 	}
 }
-
+*/
 func TestCheckInCircileDriven(t *testing.T) {
+
 	defaultX := 1
 	defaultY := 1
 
@@ -51,11 +53,14 @@ func TestCheckInCircileDriven(t *testing.T) {
 
 	for _, tt := range tests {
 		testname := fmt.Sprintf("%v", tt.data)
+
 		t.Run(testname, func(t *testing.T) {
+
 			ans := tt.data.CheckInCircile(float64(defaultX), float64(defaultY))
 			if ans != tt.want {
 				t.Errorf("got %s, want %s", ans, tt.want)
 			}
+
 		})
 	}
 }

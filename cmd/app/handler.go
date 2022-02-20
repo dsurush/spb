@@ -15,8 +15,10 @@ const value = "application/json; charset=utf-8"
 const filepath = `../data.json`
 
 func Test(writer http.ResponseWriter, request *http.Request, _ httprouter.Params) {
+
 	writer.Header().Set(contentType, value)
 	x, err := strconv.ParseFloat(request.URL.Query().Get(`x`), 64)
+
 	if err != nil {
 		log.Printf("Handler Test Parsefloat x err is %e\n", err)
 		writer.WriteHeader(http.StatusBadRequest)
@@ -26,7 +28,9 @@ func Test(writer http.ResponseWriter, request *http.Request, _ httprouter.Params
 		}
 		return
 	}
+
 	y, err := strconv.ParseFloat(request.URL.Query().Get(`y`), 64)
+
 	if err != nil {
 		log.Printf("Handler Test Parsefloat y err is %e\n", err)
 		writer.WriteHeader(http.StatusBadRequest)
@@ -36,7 +40,8 @@ func Test(writer http.ResponseWriter, request *http.Request, _ httprouter.Params
 		}
 		return
 	}
-	Coordinate, err := services.ReadCoordinate(filepath)
+
+	coordinate, err := services.ReadCoordinate(filepath)
 	if err != nil {
 		log.Printf("Handler Test ReadData filepath err is %e\n", err)
 		writer.WriteHeader(http.StatusInternalServerError)
@@ -46,8 +51,8 @@ func Test(writer http.ResponseWriter, request *http.Request, _ httprouter.Params
 		}
 		return
 	}
-	currency := Coordinate.CheckInCircile(x, y)
-	AllCurrency, err := services.GetAllCurrency()
+	currency := coordinate.CheckInCircile(x, y)
+	allCurrency, err := services.GetAllCurrency()
 	if err != nil {
 		writer.WriteHeader(http.StatusFailedDependency)
 		err := json.NewEncoder(writer).Encode([]string{"err.dependency_error"})
@@ -56,7 +61,7 @@ func Test(writer http.ResponseWriter, request *http.Request, _ httprouter.Params
 		}
 		return
 	}
-	err = json.NewEncoder(writer).Encode(AllCurrency.Valute[currency])
+	err = json.NewEncoder(writer).Encode(allCurrency.Valute[currency])
 	if err != nil {
 		log.Println(err)
 	}
