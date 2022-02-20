@@ -3,7 +3,6 @@ package pkg
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -32,7 +31,6 @@ func ReadCoordinate(filepath string) (CoordinateData, error) {
 
 func (receiver *CoordinateData) CountDistance(x, y float64) float64 {
 	distance := (receiver.X-x)*(receiver.X-x) + (receiver.Y-y)*(receiver.Y-y)
-	fmt.Println(distance)
 	return distance
 }
 

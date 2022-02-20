@@ -30,3 +30,32 @@ func TestCountDistanceDriven(t *testing.T) {
 		})
 	}
 }
+
+func TestCheckInCircileDriven(t *testing.T) {
+	defaultX := 1
+	defaultY := 1
+
+	var tests = []struct {
+		data pkg.CoordinateData
+		want string
+	}{
+		{pkg.CoordinateData{X: 1, Y: 1, Diametr: 4}, "USD"},
+		{pkg.CoordinateData{X: 1, Y: 1, Diametr: 1}, "USD"},
+		{pkg.CoordinateData{X: 2, Y: -1, Diametr: 4}, "EUR"},
+		{pkg.CoordinateData{X: 2, Y: -1, Diametr: 9}, "USD"},
+		{pkg.CoordinateData{X: -2, Y: 2, Diametr: 4}, "EUR"},
+		{pkg.CoordinateData{X: -2, Y: 2, Diametr: 10}, "USD"},
+		{pkg.CoordinateData{X: -2, Y: -3, Diametr: 6}, "EUR"},
+		{pkg.CoordinateData{X: -2, Y: -3, Diametr: 10}, "USD"},
+	}
+
+	for _, tt := range tests {
+		testname := fmt.Sprintf("%v", tt.data)
+		t.Run(testname, func(t *testing.T) {
+			ans := tt.data.CheckInCircile(float64(defaultX), float64(defaultY))
+			if ans != tt.want {
+				t.Errorf("got %s, want %s", ans, tt.want)
+			}
+		})
+	}
+}
