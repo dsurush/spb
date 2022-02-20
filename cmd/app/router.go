@@ -4,18 +4,26 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"spb/settings"
+	"spb/pkg/services"
+	"spb/settings/utils"
 
 	"github.com/julienschmidt/httprouter"
 )
 
 func RouterInit() {
 	router := httprouter.New()
-	setting, err := settings.ReadSettings(`../settings/settings.json`)
+
+	setting, err := utils.ReadSettings(`../settings/settings.json`)
 	if err != nil {
-		log.Fatalf("Check path readsettings")
+		log.Fatalf("Check path envirement readsettings")
 	}
-	router.GET("/test", Test)
+
+	coordinate, err = services.ReadCoordinate(filepath)
+	if err != nil {
+		log.Fatalf("Check path bussines readsettings")
+	}
+
+	router.GET("/inradius", InradiusHandler)
 
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", setting.Port), router))
 }
