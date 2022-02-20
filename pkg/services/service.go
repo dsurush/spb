@@ -29,7 +29,7 @@ func ReadCoordinate(filepath string) (CoordinateData, error) {
 	return Coordinate, nil
 }
 
-func (receiver *CoordinateData) CountDistance(x, y float64) float64 {
+func (receiver *CoordinateData) сountDistance(x, y float64) float64 {
 	distance := (receiver.X-x)*(receiver.X-x) + (receiver.Y-y)*(receiver.Y-y)
 	return distance
 }
@@ -38,7 +38,7 @@ func (receiver *CoordinateData) CheckInCircile(x, y float64) string {
 	const USD = "USD"
 	const EUR = "EUR"
 
-	distance := receiver.CountDistance(x, y)
+	distance := receiver.сountDistance(x, y)
 	radius := receiver.Diametr / 2
 
 	if radius*radius >= distance {
